@@ -1,7 +1,7 @@
 % download BSDS500 from: http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html#bsds500
 dataset = 'C:\Users\Arie\Downloads\BSR_bsds500\BSR\BSDS500\data\images\train';
 N_patches = 10^5;
-patch_sz = 11;
+patch_sz = 3;
 rng(0); % always repeat same patches
 
 % collect patches
@@ -32,7 +32,7 @@ for img_idx = 1:num_images
     % store patch
     im_patches = arrayfun(@(x,y) imcrop(I, [x y patch_sz-1 patch_sz-1]), x0, y0, 'UniformOutput', false);
     im_patches = cellfun(@(patch) patch(:)', im_patches, 'UniformOutput', false);
-    Patches(patch_idx:patch_idx+samp_per_img-1, :) = vertcat(im_patches{:});;
+    Patches(patch_idx:patch_idx+samp_per_img-1, :) = vertcat(im_patches{:});
     
     % store patch position
     Patch_src{img_idx}.filename = fl{img_idx};
